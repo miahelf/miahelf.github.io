@@ -13,6 +13,7 @@
             .flip1 { background-image: url(flip1.svg); } 
             .rollarea { background-color: darkgreen; transition: background-color 0.5s;  text-align: center; }
             .rollarealight { background-color: #119911; }
+            #rollamount { font-size: 2em; text-align: center; margin: 1em;}
         </style>
     </head>
     <body >
@@ -24,9 +25,12 @@
                 document.getElementById('rollbutton').classList.add("buttonlight");
                 setTimeout(Fadeback, 500);
 
+                var rollamount = 0;
+
                 if (Math.random() >= 0.5) {
                     document.getElementById('roll1').classList.remove("flip0");
                     document.getElementById('roll1').classList.add("flip1");
+                    rollamount++;
                 } else {
                     document.getElementById('roll1').classList.remove("flip1");
                     document.getElementById('roll1').classList.add("flip0");
@@ -35,6 +39,7 @@
                 if (Math.random() >= 0.5) {
                     document.getElementById('roll2').classList.remove("flip0");
                     document.getElementById('roll2').classList.add("flip1");
+                    rollamount++;
                 } else {
                     document.getElementById('roll2').classList.remove("flip1");
                     document.getElementById('roll2').classList.add("flip0");
@@ -43,6 +48,7 @@
                 if (Math.random() >= 0.5) {
                     document.getElementById('roll3').classList.remove("flip0");
                     document.getElementById('roll3').classList.add("flip1");
+                    rollamount++;
                 } else {
                     document.getElementById('roll3').classList.remove("flip1");
                     document.getElementById('roll3').classList.add("flip0");
@@ -51,10 +57,13 @@
                 if (Math.random() >= 0.5) {
                     document.getElementById('roll4').classList.remove("flip0");
                     document.getElementById('roll4').classList.add("flip1");
+                    rollamount++;
                 } else {
                     document.getElementById('roll4').classList.remove("flip1");
                     document.getElementById('roll4').classList.add("flip0");
                 }
+
+                 document.getElementById('rollamount').innerHTML = rollamount;
 
             }
 
@@ -73,6 +82,8 @@
         </div>
 
         <button id="rollbutton" onclick="Roll();">Roll</button>
+
+        <div id="rollamount">2</div>
 
     </body>
 </html>
