@@ -1,89 +1,111 @@
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-        <title>Flip Four</title>
-        <style>
-            body { 
-                background-color: dimgray; color: white; font-family: sans-serif; font-size: large; margin: 0; padding: 0;
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <title>Flip Four</title>
+    <style>
+        body {
+            background-color: dimgray;
+            color: white;
+            font-family: sans-serif;
+            font-size: large;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            border: none;
+            background-color: lightseagreen;
+            color: white;
+            font-size: 2em;
+            padding: 1em;
+            display: block;
+            width: 100%;
+            transition: background-color 0.5s;
+        }
+
+        .buttonlight {
+            background-color: white;
+        }
+
+        .flip {
+            width: 96px;
+            height: 96px;
+            display: inline-block;
+            margin: 0.5em;
+            border: 0
+        }
+
+        .flip0 { background-image: url(flip0.svg); }
+
+        .flip1 { background-image: url(flip1.svg); }
+
+        .rollarea {
+            background-color: darkgreen;
+            transition: background-color 0.5s;
+            text-align: center;
+        }
+
+        .rollarealight { background-color: #119911; }
+
+        #rollamount {
+            font-size: 2em;
+            text-align: center;
+            margin: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        function Roll() {
+
+            document.getElementById('rollarea').classList.add("rollarealight");
+            document.getElementById('rollbutton').classList.add("buttonlight");
+            setTimeout(Fadeback, 500);
+
+            var rollamount = 0;
+
+            rollamount += Flip(document.getElementById('roll1'))
+            rollamount += Flip(document.getElementById('roll2'))
+            rollamount += Flip(document.getElementById('roll3'))
+            rollamount += Flip(document.getElementById('roll4'))
+
+            document.getElementById('rollamount').innerHTML = rollamount;
+
+        }
+
+        function Fadeback() {
+            document.getElementById('rollarea').classList.remove("rollarealight");
+            document.getElementById('rollbutton').classList.remove("buttonlight");
+        }
+
+        function Flip(flipthis) {
+            if (Math.random() >= 0.5) {
+                flipthis.classList.remove("flip0");
+                flipthis.classList.add("flip1");
+                return 1;
+            } else {
+                flipthis.classList.remove("flip1");
+                flipthis.classList.add("flip0");
+                return 0;
             }
-            button { border: none; background-color: lightseagreen; color: white; font-size: 2em; padding: 1em; display: block; width: 100%; transition: background-color 0.5s; }
-            .buttonlight { background-color: white; }
-            .flip { width: 96px; height: 96px; display: inline-block; margin: 0.5em; border: 0}
-            .flip0 { background-image: url(flip0.svg); } 
-            .flip1 { background-image: url(flip1.svg); } 
-            .rollarea { background-color: darkgreen; transition: background-color 0.5s;  text-align: center; }
-            .rollarealight { background-color: #119911; }
-            #rollamount { font-size: 2em; text-align: center; margin: 1em;}
-        </style>
-    </head>
-    <body >
-       
-        <script>
-            function Roll() {
+        }
 
-                document.getElementById('rollarea').classList.add("rollarealight");
-                document.getElementById('rollbutton').classList.add("buttonlight");
-                setTimeout(Fadeback, 500);
+    </script>
 
-                var rollamount = 0;
+    <div id="rollarea" class="rollarea">
+        <div id="roll1" class="flip flip0"></div>
+        <div id="roll2" class="flip flip0"></div><br/>
+        <div id="roll3" class="flip flip1"></div>
+        <div id="roll4" class="flip flip1"></div>
+    </div>
 
-                if (Math.random() >= 0.5) {
-                    document.getElementById('roll1').classList.remove("flip0");
-                    document.getElementById('roll1').classList.add("flip1");
-                    rollamount++;
-                } else {
-                    document.getElementById('roll1').classList.remove("flip1");
-                    document.getElementById('roll1').classList.add("flip0");
-                }
+    <button id="rollbutton" onclick="Roll();">Roll</button>
 
-                if (Math.random() >= 0.5) {
-                    document.getElementById('roll2').classList.remove("flip0");
-                    document.getElementById('roll2').classList.add("flip1");
-                    rollamount++;
-                } else {
-                    document.getElementById('roll2').classList.remove("flip1");
-                    document.getElementById('roll2').classList.add("flip0");
-                }
+    <div id="rollamount">2</div>
 
-                if (Math.random() >= 0.5) {
-                    document.getElementById('roll3').classList.remove("flip0");
-                    document.getElementById('roll3').classList.add("flip1");
-                    rollamount++;
-                } else {
-                    document.getElementById('roll3').classList.remove("flip1");
-                    document.getElementById('roll3').classList.add("flip0");
-                }
+</body>
 
-                if (Math.random() >= 0.5) {
-                    document.getElementById('roll4').classList.remove("flip0");
-                    document.getElementById('roll4').classList.add("flip1");
-                    rollamount++;
-                } else {
-                    document.getElementById('roll4').classList.remove("flip1");
-                    document.getElementById('roll4').classList.add("flip0");
-                }
-
-                 document.getElementById('rollamount').innerHTML = rollamount;
-
-            }
-
-            function Fadeback() {
-                document.getElementById('rollarea').classList.remove("rollarealight");
-                document.getElementById('rollbutton').classList.remove("buttonlight");
-            }
-
-        </script>
-
-        <div id="rollarea" class="rollarea">
-            <div id="roll1" class="flip flip0" ></div>
-            <div id="roll2" class="flip flip0"  ></div><br/>
-            <div id="roll3" class="flip flip1" ></div>
-            <div id="roll4" class="flip flip1" ></div>
-        </div>
-
-        <button id="rollbutton" onclick="Roll();">Roll</button>
-
-        <div id="rollamount">2</div>
-
-    </body>
 </html>
